@@ -18,6 +18,11 @@ echo "Homogenizing sample rates to 48000 Hz"
 
 sox $sourceaudio.truncated.wav -r 48000 $sourceaudio.48kHz.wav
 
-echo "Adding Intro and Outro"
+echo "Adding Intro and Outro... and encoding to OGG"
 
-sox intro.wav $sourceaudio.48kHz.wav outro.wav podcast.ogg #XXX Would be nice to specify the output at the command line
+sox intro.wav $sourceaudio.48kHz.wav outro.wav $sourceaudio.ogg #XXX Might be nice to specify the output at the command line
+
+echo "Cleaning up breadcrumbs."
+
+rm $sourceaudio.truncated.wav
+rm $sourceaudio.48kHz.wav
