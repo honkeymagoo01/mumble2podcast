@@ -5,6 +5,7 @@
 # Requires that you have sox installed.
 #
 # Usage: $ mumble2podcast.sh 
+
 echo "what is the name of the sourceaudio file"
 
 read sourceaudio
@@ -41,8 +42,8 @@ rm $sourceaudio.48kHz.wav
 
 echo "adding media tags"
 
-id3tool -t "LinuLUGcast Episode-${episode_number}" -a "LinuxLUGcast Podcast" -r "LinuxLUGcast" -y "2016" -n "Topics:$topics" -g "0x65" lugcast_${episode_number}.ogg
+date=($date +'%Y')
 
-id3tool -t "LinuLUGcast Episode-${episode_number}" -a "LinuxLUGcast Podcast" -r "LinuxLUGcast" -y "2016" -n "Topics:$topics" -g "0x65" lugcast_${episode_number}.mp3
+./fix_tags  -ARTIST=LinuxLugCast -TITLE=lugcast_${episode_number} -COMMENT="$topics" -ALBUM=LinuxLUGcast_Podcast -TRACK=001 -GENRE=podcast -YEAR=$date lugcast_${episode_number}.*
 
 echo "All done time to post"
